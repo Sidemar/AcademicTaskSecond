@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atividade 1 e bla bla bla"
+        android:textSize="18dp"
+        android:paddingLeft="18dp"
+        android:id="@+id/group_name"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/group_date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21/11/2015"
+        android:textSize="15dp"
+        android:id="@+id/group_date"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/group_alert" />"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/group_alert"
+        android:src="@drawable/redalert"
+        android:layout_alignBottom="@+id/group_date"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"/>
+</RelativeLayout>

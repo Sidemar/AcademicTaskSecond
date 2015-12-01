@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:layout_marginLeft="25dp">
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentTop="@+id/task_notes"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/task_notes"
+        android:text="TextView"
+        android:textSize="20dp"
+        android:clickable="true"
+        android:onClick="swDesctiption"/>
+
+    <ImageView
+        android:id="@+id/task_notes"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/notes2"
+        android:onClick="swNotes"
+        android:background="@android:color/transparent"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/task_goup"
+        android:layout_below="@+id/task_notes"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/group_users"
+        android:onClick="swTaskGroup"
+        android:background="@android:color/transparent"/>
+
+</RelativeLayout>
