@@ -87,8 +87,8 @@
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="google-oauth-client-java6-1.15.0-rc" level="project" />
-    <orderEntry type="library" exported="" name="android-oauth-client-0.0.3" level="project" />
     <orderEntry type="library" exported="" name="google-oauth-client-1.15.0-rc" level="project" />
+    <orderEntry type="library" exported="" name="android-oauth-client-0.0.3" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-asl-1.9.11" level="project" />
     <orderEntry type="library" exported="" name="gson-2.5" level="project" />
     <orderEntry type="library" exported="" name="design-23.1.0" level="project" />

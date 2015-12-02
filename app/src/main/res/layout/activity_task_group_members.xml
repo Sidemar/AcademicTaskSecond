@@ -8,47 +8,29 @@
     tools:context="second.test.lucassmc.academictask.TaskGroupMembers">
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/imageView5"
-        android:src="@drawable/add_user"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageView
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:id="@+id/imageView6"
         android:src="@drawable/arrow"
-        android:layout_below="@+id/imageView5"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp" />
-
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:id="@+id/imageView7"
-        android:src="@drawable/arrow"
-        android:layout_below="@+id/imageView6"
-        android:layout_toStartOf="@+id/textView2"
-        android:layout_marginTop="22dp" />
+        android:layout_below="@+id/adicionar"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="Lucas Simonetti M. Cardoso"
-        android:id="@+id/textView"
+        android:id="@+id/membros"
         android:layout_alignTop="@+id/imageView6"
         android:layout_toEndOf="@+id/imageView6" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Sidemar Fideles Cezario"
-        android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/imageView7"
-        android:layout_alignStart="@+id/textView" />
+        android:text="Adicionar"
+        android:id="@+id/adicionar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="cadastrar"
+        />
 
 </RelativeLayout>

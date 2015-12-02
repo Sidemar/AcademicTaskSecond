@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import modelo.Tarefa;
 import request.OAuthTokenRequest;
@@ -58,6 +60,19 @@ public class Tasks extends AppCompatActivity {
         reqJsonTarefas(Long.parseLong(idTurma));
 
         expandList = (ExpandableListView) findViewById(R.id.exp_list);
+
+        expandList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+      /* You must make use of the View v, find the view by id and extract the text as below*/
+
+                Log.v("ACAO", "ID: " + groupPosition);
+
+                return true;  // i missed this
+            }
+        });
 
     }
 
@@ -116,7 +131,7 @@ public class Tasks extends AppCompatActivity {
                         tarefa.setDataEntrega(jsonobject.getString("dataEntrega"));
                         tarefa.setHorarioInicio(jsonobject.getString("horarioInicio"));
                         tarefa.setHorarioEntrega(jsonobject.getString("horarioEntrega"));
-                        tarefas.add(tarefa);
+                        tarefas.add(0, tarefa);
                     }
 
                     expListItems = SetStandardGroups(tarefas);
@@ -155,6 +170,7 @@ public class Tasks extends AppCompatActivity {
 
     public void swTaskGroup(View view){
         Intent intent = new Intent(Tasks.this, TaskGroupMembers.class);
+        //intent.putExtra("nome_tarefa", "Trab06_EDO");
         startActivity(intent);
     }
 

@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="second.test.lucassmc.academictask" >
+    package="second.test.lucassmc.academictask">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:configChanges="orientation|screenSize"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="" >
+            android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,24 +21,24 @@
         </activity>
         <activity
             android:name=".Tasks"
-            android:label="@string/task_name" >
-        </activity>
+            android:label="@string/task_name"></activity>
         <activity
             android:name=".Notes"
-            android:label="@string/notes_name" >
-        </activity>
+            android:label="@string/notes_name"></activity>
         <activity
             android:name=".Description"
-            android:label="@string/description_name" >
-        </activity>
+            android:label="@string/description_name"></activity>
         <activity
             android:name=".TaskGroupMembers"
-            android:label="@string/group_members_name" >
-        </activity>
+            android:label="@string/group_members_name"></activity>
         <activity
             android:name=".Disciplinas"
-            android:label="@string/description_name" >
-        </activity>
+            android:label="@string/description_name"></activity>
+        <activity
+            android:name=".CadastrarGrupoActivity"
+            android:label="@string/title_activity_cadastrar_grupo"
+            android:theme="@style/AppTheme.NoActionBar">
+            </activity>
     </application>
 
 </manifest>

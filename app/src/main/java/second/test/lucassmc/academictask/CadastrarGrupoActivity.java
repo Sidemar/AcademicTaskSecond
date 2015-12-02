@@ -1,8 +1,11 @@
 package second.test.lucassmc.academictask;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -14,43 +17,33 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-public class TaskGroupMembers extends AppCompatActivity {
-    int tamanho;
-    String[] nomes;
-    TextView membros;
+public class CadastrarGrupoActivity extends AppCompatActivity {
+
+    TextView nome, login;
+    String login_user = "sidemar";
+    private String nome_tarefa = "Trab06_EDO";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_group_members);
-
-        membros = (TextView) findViewById(R.id.membros);
-        membros.setText("");
-
+        setContentView(R.layout.activity_cadastrar_grupo);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        nome = (TextView) findViewById(R.id.nome_membro);
+        login = (TextView) findViewById(R.id.login_membro);
         Intent intent = getIntent();
         Bundle bd = intent.getExtras();
         if(bd != null)
         {
-            tamanho = Integer.parseInt((String) bd.get("tamanho"));
-            nomes = new String[tamanho];
-            for(int i = 0; i < tamanho; i++) {
-                //nomes[i] = (String) bd.get(""+i);
-                membros.setText(membros.getText() +((String) bd.get(""+i)) + "\n");
-            }
+            login_user = (String) bd.get("login");
+            nome_tarefa = (String) bd.get("nome_tarefa");
         }
-
-        enviar();
     }
 
-    public void cadastrar(View v) {
-        Intent i = new Intent(this, CadastrarGrupoActivity.class);
-        startActivity(i);
-    }
-
-    public void enviar() {
+    public void enviar(View v) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://www.academictask.esy.es/listarGrupo.php";
+        String url ="http://www.academictask.esy.es/cadastroGrupo.php?login_user="+login_user+"&nome="+nome.getText()+"&login="+login.getText()+"&id_tarefa="+nome_tarefa;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -61,11 +54,16 @@ public class TaskGroupMembers extends AppCompatActivity {
                         //mTextView.setText("Response is: "+ response.substring(0,500));
                         Log.v("RESPOSTA", response);
                         String [] nomes = response.split(";");
-                        membros.setText("");
-                        for(int i = 0; i < nomes.length; i++) {
-                            //nomes[i] = (String) bd.get(""+i);
-                            membros.setText(membros.getText() + nomes[i] + "\n");
+
+                        Intent itent = new Intent(getApplicationContext(), TaskGroupMembers.class);
+
+                        for(int i = 0;i < nomes.length; i++) {
+                            itent.putExtra(""+i, nomes[i]);
                         }
+
+                        itent.putExtra("tamanho", ""+nomes.length);
+
+                        startActivity(itent);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -76,4 +74,5 @@ public class TaskGroupMembers extends AppCompatActivity {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
+
 }
