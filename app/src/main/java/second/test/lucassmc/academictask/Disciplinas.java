@@ -66,7 +66,7 @@ public class Disciplinas extends AppCompatActivity {
                 Log.v("ACAO", "ID: " + turmas.get(position).getId() + " Nome: " + turmas.get(position).getNome());
                 Intent intent = new Intent(Disciplinas.this, Tasks.class);
                 intent.putExtra("login", login);
-                intent.putExtra("id", turmas.get(position).getId());
+                intent.putExtra("id", String.valueOf(turmas.get(position).getId()));
                 startActivity(intent);
             }
         });

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -30,7 +31,9 @@ public class Tasks extends AppCompatActivity {
     private ExpandableListView expandList;
     private ArrayList<Tarefa> tarefas = new ArrayList<>();
     private ArrayList<Group> list = new ArrayList<>();
-    ArrayList<Child> ch_list;
+    private ArrayList<Child> ch_list;
+    private String login;
+    private String idTurma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,46 +44,37 @@ public class Tasks extends AppCompatActivity {
         pDialog.setMessage("Aguarde ...");
         pDialog.setCancelable(false);
 
-        Bundle extras = getIntent().getExtras();
 
-        String login = extras.getString("login");
-        String id = extras.getString("id");
 
-        reqJsonTarefas(Long.parseLong(id));
+        Intent intent = getIntent();
+        Bundle bd = intent.getExtras();
+        if(bd != null)
+        {
+            login = (String) bd.get("login");
+            idTurma = (String) bd.get("id");
+            //Log.v("LOGIN", getName);
+        }
+        //reqJsonTarefas(Long.parseLong(id));
+        reqJsonTarefas(Long.parseLong(idTurma));
 
         expandList = (ExpandableListView) findViewById(R.id.exp_list);
-        //expListItems = SetStandardGroups();
-        //expAdapter = new ExpandableListAdapter(Tasks.this, expListItems);
-        //expandList.setAdapter(expAdapter);
+
     }
 
-    public ArrayList<Group> SetStandardGroups(String task_names[], String group_date[], String description[]) {
-
-        //String task_names[] = {"DIM001 - Tarefa 1", "DIM002 - Tarefa 2", "DIM003 - Tarefa 3", "DIM004 - Tarefa 4"};
-
-        //String group_date[] = {"19/11/2015", "19/11/2015", "25/11/2015", "26/11/2015"};
+    public ArrayList<Group> SetStandardGroups(ArrayList<Tarefa> ts) {
 
         int g_image = R.drawable.redalert;
         int g_image2 = R.drawable.bluealert;
 
-        /*String description[] = {"Enviar material a ser utilizado na apresentação (slides, projetos exemplo, etc.)",
-                "Trabalho prático",
-                "Nesta parte final do projeto, vocês devem apresentar o relatório final(não use slides). O foc...",
-                "Para a avaliação dos interpretadores, deverão ser submetidos: ..."};*/
-
         int Image = R.drawable.notes2;
         int image2 = R.drawable.group_users;
 
-
-
-
-
         int j = 0;
 
-        for (String task_name : task_names) {
+        for (Tarefa tarefa : ts) {
             Group gru = new Group();
-            gru.setName(task_name);
-            gru.setDate(group_date[j]);
+            gru.setName(tarefa.getTitulo());
+            gru.setDate(tarefa.getDataEntrega());
             if(j < 2)
                 gru.setImage(g_image);
             else
@@ -88,7 +82,7 @@ public class Tasks extends AppCompatActivity {
 
             ch_list = new ArrayList<>();
             Child ch = new Child();
-            ch.setName(description[j]);
+            ch.setName(tarefa.getConteudo());
             ch.setImage(Image);
             ch.setImage2(image2);
             ch_list.add(ch);
@@ -125,11 +119,9 @@ public class Tasks extends AppCompatActivity {
                         tarefas.add(tarefa);
                     }
 
-                    for (Tarefa tarefa : tarefas) {
-
-                    }
-
-
+                    expListItems = SetStandardGroups(tarefas);
+                    expAdapter = new ExpandableListAdapter(Tasks.this, expListItems);
+                    expandList.setAdapter(expAdapter);
                     hidepDialog();
                 } catch (Exception e) {
                     e.printStackTrace();
